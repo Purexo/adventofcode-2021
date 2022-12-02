@@ -15,10 +15,7 @@ const BYTES_MASK = [
   0b000000000100,
   0b000000000010,
   0b000000000001,
-]
-
-let bits_1 = [];
-let bits_0 = [];
+];
 
 let oxygen_ratings;
 let co2_ratings;
@@ -46,6 +43,9 @@ function noop() {}
  * mute iteration to nextIterations
  */
 async function firstIteration(mask) {
+  const bits_1 = [];
+  const bits_0 = [];
+
   for await (const line of fh.readLines()) {
     const value = parseInt(line, 2);
 
@@ -72,8 +72,8 @@ function nextIterations(mask) {
  * if oxygen_ratings length is 1, replace oxygenIteration by noop to skip this step
  */
 function oxygenIteration(mask) {
-  bits_1 = [];
-  bits_0 = [];
+  const bits_1 = [];
+  const bits_0 = [];
 
   for (const value of oxygen_ratings) {
     if (mask & value) bits_1.push(value);
@@ -89,8 +89,8 @@ function oxygenIteration(mask) {
  * if co2_ratings length is 1, replace co2Iteration by noop to skip this step
  */
 function co2Iteration(mask) {
-  bits_1 = [];
-  bits_0 = [];
+  const bits_1 = [];
+  const bits_0 = [];
 
   for (const value of co2_ratings) {
     if (mask & value) bits_1.push(value);
