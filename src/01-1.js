@@ -16,4 +16,5 @@ for await (const line of fh.readLines()) {
   previousValue = value;
 }
 
+// 1482
 console.log(measureLGTprevious);

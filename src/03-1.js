@@ -30,4 +30,5 @@ for (const [bs0, bs1] of bytes_synthesis) {
   }
 }
 
+// 3813416
 console.log(Number(gamma) * Number(epsilon));

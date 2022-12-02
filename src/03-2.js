@@ -34,6 +34,7 @@ for (const mask of BYTES_MASK) {
 
 const [[oxygen_rating], [co2_rating]] = [oxygen_ratings, co2_ratings]
 
+// 2990784
 console.log({oxygen_rating, co2_rating, result: oxygen_rating * co2_rating});
 
 function noop() {}

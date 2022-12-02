@@ -29,4 +29,5 @@ for await (const line of fh.readLines()) {
   pending_windows.push([value]);
 }
 
+// 1518
 console.log(windowLGTprevious);

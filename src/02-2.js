@@ -26,4 +26,5 @@ for await (const line of fh.readLines()) {
   strategies[direction](value);
 }
 
+// 1320534480
 console.log(horizontal_position * deep_position);
