@@ -28,6 +28,7 @@ let iteration = firstIteration;
 for (const mask of BYTES_MASK) {
   await iteration(mask);
 
+  // no need to continue to parse the bits, the result is ready
   if (oxygenIteration === noop && co2Iteration === noop) break;
 }
 
@@ -36,6 +37,13 @@ const [[oxygen_rating], [co2_rating]] = [oxygen_ratings, co2_ratings]
 console.log({oxygen_rating, co2_rating, result: oxygen_rating * co2_rating});
 
 function noop() {}
+
+/*
+ * First iteration need to read the file once to split the bits
+ * in bits_1 and bits_0
+ * determine oxygen_ratings and co2_ratings from bits size
+ * mute iteration to nextIterations
+ */
 async function firstIteration(mask) {
   for await (const line of fh.readLines()) {
     const value = parseInt(line, 2);
@@ -50,11 +58,18 @@ async function firstIteration(mask) {
   iteration = nextIterations;
 }
 
+/*
+ * call oxygenIteration and co2Iteration
+ */
 function nextIterations(mask) {
   oxygenIteration(mask);
   co2Iteration(mask);
 }
 
+/*
+ * iterate through oxygen_ratings to split the bits and keep the longest bits suite
+ * if oxygen_ratings length is 1, replace oxygenIteration by noop to skip this step
+ */
 function oxygenIteration(mask) {
   bits_1 = [];
   bits_0 = [];
@@ -68,6 +83,10 @@ function oxygenIteration(mask) {
   if (oxygen_ratings.length === 1) oxygenIteration = noop;
 }
 
+/*
+ * iterate through co2_ratings to split the bits and keep the smallest bits suite
+ * if co2_ratings length is 1, replace co2Iteration by noop to skip this step
+ */
 function co2Iteration(mask) {
   bits_1 = [];
   bits_0 = [];
