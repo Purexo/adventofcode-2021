@@ -5,3 +5,4 @@ https://adventofcode.com/2021/
 ## My Progress
 
 - 01 ⭐⭐
+- 02 ⭐⭐
